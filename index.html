@@ -187,6 +187,44 @@
         <h1>For My Amazing Girlfriend💋</h1>
         <p class="subtitle">You make every day brighter and more beautiful.</p>
         <button class="interactive-btn" onclick="createHeartBurst(event)">Click for a Surprise 💜</button>
+
+              <!-- Audio Element -->
+<audio id="purpleAudio" src="NahanapKita_Amie_Sol.mp3"></audio>
+
+<!-- Purple Audio Button -->
+<button 
+  class="purple-audio-btn" 
+  style="
+    background: linear-gradient(135deg, #8a2be2, #4b0082);
+    color: #ffffff;
+    font-family: Arial, sans-serif;
+    font-size: 16px;
+    font-weight: bold;
+    padding: 12px 24px;
+    border: none;
+    border-radius: 25px;
+    cursor: pointer;
+    box-shadow: 0 4px 15px rgba(138, 43, 226, 0.4);
+    transition: all 0.2s ease;
+  "
+  onclick="
+    const a = document.getElementById('purpleAudio');
+    if (a.paused) {
+      a.play();
+      this.innerText = 'Pause Sound ⏸️';
+      this.style.background = 'linear-gradient(135deg, #a855f7, #7e22ce)';
+      this.style.boxShadow = '0 0 15px #d8b4fe';
+    } else {
+      a.pause();
+      this.innerText = 'Play Sound 💜';
+      this.style.background = 'linear-gradient(135deg, #8a2be2, #4b0082)';
+      this.style.boxShadow = '0 4px 15px rgba(138, 43, 226, 0.4)';
+    }
+  "
+>
+  Play Sound 💜
+</button>
+        
     </div>
 
     <!-- Letter Section -->
