@@ -188,44 +188,164 @@
         <p class="subtitle">You make every day brighter and more beautiful.</p>
         <button class="interactive-btn" onclick="createHeartBurst(event)">Click for a Surprise 💜</button>
 
-              <!-- Audio Element -->
-<audio id="purpleAudio" src="NahanapKita_Amie_Sol.mp3"></audio>
+              <div style="
+  display: inline-flex;
+  align-items: center;
+  gap: 16px;
+  padding: 12px 24px;
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 50px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+  font-family: system-ui, -apple-system, sans-serif;
+">
 
-<!-- Purple Audio Button -->
-<button 
-  class="purple-audio-btn" 
-  style="
-    background: linear-gradient(135deg, #8a2be2, #4b0082);
-    color: #ffffff;
-    font-family: Arial, sans-serif;
-    font-size: 16px;
-    font-weight: bold;
-    padding: 12px 24px;
-    border: none;
-    border-radius: 25px;
-    cursor: pointer;
-    box-shadow: 0 4px 15px rgba(138, 43, 226, 0.4);
-    transition: all 0.2s ease;
-  "
-  onclick="
-    const a = document.getElementById('purpleAudio');
-    if (a.paused) {
-      a.play();
-      this.innerText = 'Pause Sound ⏸️';
-      this.style.background = 'linear-gradient(135deg, #a855f7, #7e22ce)';
-      this.style.boxShadow = '0 0 15px #d8b4fe';
-    } else {
-      a.pause();
-      this.innerText = 'Play Sound 💜';
-      this.style.background = 'linear-gradient(135deg, #8a2be2, #4b0082)';
-      this.style.boxShadow = '0 4px 15px rgba(138, 43, 226, 0.4)';
+  <!-- Internal styles -->
+  <style>
+    .purple-player-btn {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #c084fc, #8a2be2);
+      border: none;
+      cursor: pointer;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      box-shadow: 0 4px 15px rgba(138, 43, 226, 0.5);
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+      outline: none;
+      flex-shrink: 0;
     }
-  "
->
-  Play Sound 💜
-</button>
+    .purple-player-btn:hover {
+      transform: scale(1.08);
+      box-shadow: 0 6px 20px rgba(138, 43, 226, 0.7);
+    }
+    .purple-player-btn:active {
+      transform: scale(0.95);
+    }
+    .purple-player-btn svg {
+      width: 20px;
+      height: 20px;
+      fill: #ffffff;
+    }
+
+    /* Track display text */
+    .purple-track-info {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      color: #ffffff;
+      line-height: 1.2;
+    }
+    .purple-track-title {
+      font-size: 14px;
+      font-weight: 600;
+      letter-spacing: 0.3px;
+      white-space: nowrap;
+    }
+    .purple-track-artist {
+      font-size: 12px;
+      color: #c084fc;
+      margin-top: 3px;
+      white-space: nowrap;
+    }
+
+    /* Equalizer styling */
+    .purple-equalizer {
+      display: flex;
+      align-items: flex-end;
+      gap: 4px;
+      height: 20px;
+      margin-left: 4px;
+    }
+    .purple-equalizer .eq-bar {
+      width: 4px;
+      height: 4px;
+      background: linear-gradient(to top, #8a2be2, #c084fc);
+      border-radius: 4px;
+      transition: height 0.2s ease;
+    }
+
+    /* Playing state animations */
+    .purple-equalizer.is-playing .eq-bar {
+      animation: purpleEqBounce 1.2s ease-in-out infinite alternate;
+    }
+    .purple-equalizer.is-playing .eq-bar:nth-child(1) { animation-delay: 0.1s; }
+    .purple-equalizer.is-playing .eq-bar:nth-child(2) { animation-delay: 0.4s; }
+    .purple-equalizer.is-playing .eq-bar:nth-child(3) { animation-delay: 0.2s; }
+    .purple-equalizer.is-playing .eq-bar:nth-child(4) { animation-delay: 0.5s; }
+    .purple-equalizer.is-playing .eq-bar:nth-child(5) { animation-delay: 0.3s; }
+
+    @keyframes purpleEqBounce {
+      0% { height: 4px; }
+      50% { height: 20px; }
+      100% { height: 8px; }
+    }
+  </style>
+
+  <!-- Play / Pause Button -->
+  <button class="purple-player-btn" id="customPlayBtn" aria-label="Play/Pause Music">
+    <!-- Play Icon -->
+    <svg id="customIconPlay" viewBox="0 0 24 24">
+      <path d="M8 5v14l11-7z"/>
+    </svg>
+    <!-- Pause Icon -->
+    <svg id="customIconPause" viewBox="0 0 24 24" style="display: none;">
+      <path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/>
+    </svg>
+  </button>
+
+  <!-- Song Title & Artist Display -->
+  <div class="purple-track-info">
+    <span class="purple-track-title" id="customTrackTitle">Nahanap Kita</span>
+    <span class="purple-track-artist" id="customTrackArtist">Amiel Sol</span>
+  </div>
+
+  <!-- Equalizer Bars -->
+  <div class="purple-equalizer" id="customEqualizer">
+    <div class="eq-bar"></div>
+    <div class="eq-bar"></div>
+    <div class="eq-bar"></div>
+    <div class="eq-bar"></div>
+    <div class="eq-bar"></div>
+  </div>
+
+  <!-- Audio Element -->
+  <audio id="customAudio" src="NahanapKita_Amie_Sol.mp3"></audio>
+
+  <!-- JavaScript functionality -->
+  <script>
+    (function() {
+      const btn = document.getElementById('customPlayBtn');
+      const eq = document.getElementById('customEqualizer');
+      const iconPlay = document.getElementById('customIconPlay');
+      const iconPause = document.getElementById('customIconPause');
+      const audio = document.getElementById('customAudio');
+
+      let isPlaying = false;
+
+      btn.addEventListener('click', () => {
+        isPlaying = !isPlaying;
+
+        if (isPlaying) {
+          eq.classList.add('is-playing');
+          iconPlay.style.display = 'none';
+          iconPause.style.display = 'block';
+          audio.play().catch(() => {});
+        } else {
+          eq.classList.remove('is-playing');
+          iconPlay.style.display = 'block';
+          iconPause.style.display = 'none';
+          audio.pause();
+        }
+      });
+    })();
+  </script>
+</div>
         
-    </div>
 
     <!-- Letter Section -->
     <div class="card">
