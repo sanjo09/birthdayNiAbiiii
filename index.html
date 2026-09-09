@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>For My Favorite Person 💜</title>
+    <style>
+        /* --- CSS STYLES --- */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #2a0845, #6441a5, #4a00e0);
+            background-size: 400% 400%;
+            animation: gradientBG 15s ease infinite;
+            color: #ffffff;
+            min-height: 100vh;
+            overflow-x: hidden;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        @keyframes gradientBG {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        /* Hero Container */
+        .hero {
+            text-align: center;
+            padding: 80px 20px 40px;
+            z-index: 1;
+        }
+
+        h1 {
+            font-size: 3rem;
+            margin-bottom: 10px;
+            text-shadow: 0 0 15px rgba(224, 187, 228, 0.6);
+            color: #f3e5f5;
+        }
+
+        p.subtitle {
+            font-size: 1.2rem;
+            color: #d1c4e9;
+            font-style: italic;
+        }
+
+        /* Flower / Interactive Button */
+        .interactive-btn {
+            margin-top: 25px;
+            padding: 15px 30px;
+            font-size: 1.1rem;
+            background: #ab47bc;
+            color: white;
+            border: none;
+            border-radius: 30px;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        .interactive-btn:hover {
+            background: #8e24aa;
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: 0 6px 20px rgba(171, 71, 188, 0.6);
+        }
+
+        /* Love Letter Card */
+        .card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 20px;
+            padding: 30px;
+            max-width: 600px;
+            margin: 20px;
+            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+            z-index: 1;
+            text-align: center;
+        }
+
+        .card h2 {
+            color: #e1bee7;
+            margin-bottom: 15px;
+        }
+
+        .card p {
+            line-height: 1.8;
+            font-size: 1.05rem;
+            color: #f3e5f5;
+        }
+
+        /* Photo Gallery Grid */
+        .gallery-title {
+            margin-top: 40px;
+            font-size: 1.8rem;
+            color: #e1bee7;
+            z-index: 1;
+        }
+
+        .gallery {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+            padding: 20px;
+            max-width: 900px;
+            z-index: 1;
+        }
+
+        .photo-card {
+            width: 220px;
+            height: 220px;
+            background-color: rgba(255, 255, 255, 0.15);
+            border-radius: 15px;
+            overflow: hidden;
+            border: 2px solid rgba(225, 190, 231, 0.5);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            transition: transform 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .photo-card:hover {
+            transform: scale(1.05) rotate(2deg);
+        }
+
+        .photo-card img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* Floating Petal Animation */
+        .petal {
+            position: fixed;
+            top: -10%;
+            user-select: none;
+            pointer-events: none;
+            z-index: 0;
+            animation: fall linear infinite;
+        }
+
+        @keyframes fall {
+            0% {
+                transform: translateY(0) rotate(0deg);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(105vh) rotate(360deg);
+                opacity: 0.2;
+            }
+        }
+
+        /* Floating Heart Burst Effect */
+        .burst-heart {
+            position: fixed;
+            pointer-events: none;
+            animation: floatUp 1.5s ease-out forwards;
+            font-size: 24px;
+            z-index: 10;
+        }
+
+        @keyframes floatUp {
+            0% {
+                transform: translateY(0) scale(1);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-100px) scale(1.5);
+                opacity: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Hero Section -->
+    <div class="hero">
+        <h1>For My Amazing Girlfriend 🌸</h1>
+        <p class="subtitle">You make every day brighter and more beautiful.</p>
+        <button class="interactive-btn" onclick="createHeartBurst(event)">Click for a Surprise 💜</button>
+    </div>
+
+    <!-- Letter Section -->
+    <div class="card">
+        <h2>A Little Note For You ✨</h2>
+        <p>
+            I made this little space on the web just for you. Thank you for bringing so much love, laughter, and happiness into my life. Like a blossom in full bloom, you make everything around you prettier. I love you! 💐
+        </p>
+    </div>
+
+    <!-- Gallery Section -->
+    <h2 class="gallery-title">Our Favorite Moments 📸</h2>
+    <div class="gallery">
+        <!-- Replace the image src URLs with link to your actual photos! -->
+        <div class="photo-card">
+            <img src="https://images.unsplash.com/photo-1518895949257-7621c3c786d7?w=400" alt="Flowers 1">
+        </div>
+        <div class="photo-card">
+            <img src="https://images.unsplash.com/photo-1526047932273-341f2a7631f9?w=400" alt="Flowers 2">
+        </div>
+        <div class="photo-card">
+            <img src="https://images.unsplash.com/photo-1522748943407-99e056d0680b?w=400" alt="Flowers 3">
+        </div>
+    </div>
+
+    <!-- JavaScript -->
+    <script>
+        // --- Falling Flower Petal Generator ---
+        const flowers = ['🌸', '🌺', '🪻', '🌷', '💜', '✨'];
+        
+        function createPetal() {
+            const petal = document.createElement('div');
+            petal.classList.add('petal');
+            petal.innerText = flowers[Math.floor(Math.random() * flowers.length)];
+            
+            // Random horizontal position and size
+            petal.style.left = Math.random() * 100 + 'vw';
+            petal.style.fontSize = (Math.random() * 15 + 15) + 'px';
+            
+            // Random animation duration and delay
+            const duration = Math.random() * 5 + 5; // 5s to 10s
+            petal.style.animationDuration = duration + 's';
+            
+            document.body.appendChild(petal);
+            
+            // Remove element after animation ends
+            setTimeout(() => {
+                petal.remove();
+            }, duration * 1000);
+        }
+
+        // Generate petals continuously
+        setInterval(createPetal, 400);
+
+        // --- Interactive Button Heart Burst ---
+        function createHeartBurst(event) {
+            const x = event.clientX;
+            const y = event.clientY;
+
+            for (let i = 0; i < 12; i++) {
+                const heart = document.createElement('div');
+                heart.classList.add('burst-heart');
+                heart.innerText = i % 2 === 0 ? '💜' : '🌸';
+                
+                // Position near click
+                heart.style.left = (x + (Math.random() * 60 - 30)) + 'px';
+                heart.style.top = (y + (Math.random() * 60 - 30)) + 'px';
+                
+                document.body.appendChild(heart);
+
+                setTimeout(() => {
+                    heart.remove();
+                }, 1500);
+            }
+        }
+    </script>
+</body>
+</html>
